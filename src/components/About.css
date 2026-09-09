@@ -1,0 +1,79 @@
+.about {
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.about-card {
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.about-icon-wrapper {
+  background: rgba(99, 102, 241, 0.15);
+  padding: 1rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover .about-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.about-icon {
+  color: #818cf8;
+}
+
+.about-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.about-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.about-highlight {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+  color: #c7d2fe;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: auto;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
