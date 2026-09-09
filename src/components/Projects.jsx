@@ -9,7 +9,7 @@ const projects = [
     desc: 'A Daily Time Record (DTR) tracking mobile application built with React Native.',
     tags: ['React Native', 'Expo', 'Mobile'],
     github: 'https://github.com/ryujihub/DTR-Tacker',
-    live: '#'
+    live: 'https://www.facebook.com/share/p/1Bzd6UZgHc/'
   },
   {
     title: 'VESOS (AyudaAuto)',
@@ -24,7 +24,7 @@ const Projects = () => {
   return (
     <section className="section projects" id="projects">
       <div className="container">
-        <motion.h2 
+        <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,10 +32,10 @@ const Projects = () => {
         >
           Featured <span className="heading-gradient">Projects</span>
         </motion.h2>
-        
+
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <motion.div 
+            <motion.div
               className="project-card glass"
               key={index}
               initial={{ opacity: 0, y: 30 }}
