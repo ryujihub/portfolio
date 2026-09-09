@@ -5,24 +5,17 @@ import './Projects.css';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    desc: 'A full-stack e-commerce solution with Next.js, Stripe, and a modern dashboard.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
-    github: '#',
+    title: 'DTR Tracker App',
+    desc: 'A Daily Time Record (DTR) tracking mobile application built with React Native.',
+    tags: ['React Native', 'Expo', 'Mobile'],
+    github: 'https://github.com/ryujihub/DTR-Tacker',
     live: '#'
   },
   {
-    title: 'Task Management App',
-    desc: 'Real-time collaborative task manager featuring drag-and-drop workflow boards.',
-    tags: ['TypeScript', 'Firebase', 'Framer Motion'],
-    github: '#',
-    live: '#'
-  },
-  {
-    title: 'AI Image Generator',
-    desc: 'A beautiful interface for generating images using OpenAI models and caching.',
-    tags: ['Next.js', 'OpenAI', 'PostgreSQL'],
-    github: '#',
+    title: 'VESOS (AyudaAuto)',
+    desc: 'A mobile application for real-time emergency roadside assistance featuring offline capabilities and SMS fallback.',
+    tags: ['React Native', 'Firebase', 'Mobile'],
+    github: 'https://github.com/ryujihub/VESOS_VehicleEmergencySOS',
     live: '#'
   }
 ];
