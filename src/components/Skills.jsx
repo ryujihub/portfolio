@@ -2,55 +2,55 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Skills.css';
 
-const skillCategories = [
-  {
-    title: "Frontend Tools",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vue"]
-  },
-  {
-    title: "Backend & DB",
-    skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "REST APIs"]
-  },
-  {
-    title: "Design & UX",
-    skills: ["Figma", "UI Design", "Wireframing", "Prototyping", "Accessibility"]
-  }
-];
+const rowA = ['React', 'Next.js', 'TypeScript', 'React Native', 'Expo', 'Tailwind CSS', 'Framer Motion', 'Firebase'];
+const rowB = ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'REST APIs', 'Figma', 'Git', 'Accessibility'];
+
+const MarqueeRow = ({ items, reverse = false, duration = 26 }) => {
+  const doubled = [...items, ...items];
+  return (
+    <div className="marquee">
+      <div
+        className={`marquee-track ${reverse ? 'marquee-reverse' : ''}`}
+        style={{ animationDuration: `${duration}s` }}
+      >
+        {doubled.map((skill, i) => (
+          <span className="skill-badge" key={`${skill}-${i}`} aria-hidden={i >= items.length}>
+            {skill}
+          </span>
+          ))}
+      </div>
+    </div>
+  );
+};
 
 const Skills = () => {
   return (
     <section className="section skills" id="skills">
       <div className="container">
-        <motion.h2 
-          className="section-title"
+        <motion.div
+          className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          My <span className="heading-gradient">Skills</span>
-        </motion.h2>
-
-        <div className="skills-grid">
-          {skillCategories.map((category, idx) => (
-            <motion.div 
-              className="skill-category glass"
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              <h3 className="category-title">{category.title}</h3>
-              <div className="skills-list">
-                {category.skills.map(skill => (
-                  <span key={skill} className="skill-badge">{skill}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          <h2 className="section-title">My <span className="heading-gradient">Skills</span></h2>
+          <p className="section-subtitle">Tools and technologies I use to bring ideas to life.</p>
+        </motion.div>
       </div>
+
+      <motion.div
+        className="marquee-wrap"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <MarqueeRow items={rowA} duration={28} />
+        <MarqueeRow items={rowB} reverse duration={32} />
+      </motion.div>
     </section>
   );
 };
+
 export default Skills;

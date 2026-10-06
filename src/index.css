@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap');
 
 :root {
   --bg-color: #050505;
@@ -7,13 +7,21 @@
   --text-primary: #f8f8f8;
   --text-secondary: #a1a1aa;
   --accent-color: #3b82f6;
+  --accent-2: #8b5cf6;
+  --accent-3: #06b6d4;
   --accent-glow: rgba(59, 130, 246, 0.4);
+  --mx: 50vw;
+  --my: 50vh;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,6 +31,26 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 8px;
+  border: 2px solid #0a0a0a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,7 +65,66 @@ a {
   transition: color 0.2s ease;
 }
 
-/* Utilities */
+/* ============ Ambient background layers ============ */
+
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(ellipse 80% 55% at 20% -10%, rgba(59, 130, 246, 0.13), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 15%, rgba(139, 92, 246, 0.11), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 50% 110%, rgba(6, 182, 212, 0.09), transparent 60%),
+    var(--bg-color);
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 75%);
+}
+
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Cursor spotlight glow (position fed by CustomCursor via --mx/--my) */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(560px circle at var(--mx) var(--my), rgba(59, 130, 246, 0.07), transparent 65%);
+  transition: opacity 0.4s ease;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 2000;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-2), var(--accent-3));
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+/* ============ Utilities ============ */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -52,12 +139,52 @@ a {
 }
 
 .heading-gradient {
-  background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+  background-size: 250% auto;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+
+@keyframes gradient-pan {
+  to {
+    background-position: 250% center;
+  }
 }
 
 .section {
   padding: 8rem 0;
+  position: relative;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: -2rem;
+  margin-bottom: 3.5rem;
+  font-size: 1.05rem;
+}
+
+/* Scroll-reveal default states handled by framer-motion */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
