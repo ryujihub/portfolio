@@ -117,6 +117,19 @@
   box-shadow: 0 6px 28px var(--accent-glow);
 }
 
+.btn-outline {
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
 .social-links {
   display: flex;
   gap: 1.25rem;

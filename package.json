@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:pdf": "node build-printable.mjs",
+    "build": "npm run build:pdf && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },

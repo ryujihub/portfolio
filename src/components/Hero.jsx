@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from './BrandIcons';
 import portrait from '../assets/portrait.jpg';
 import './Hero.css';
@@ -58,6 +58,13 @@ const Hero = () => {
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">
               View Work <ArrowRight size={18} />
+            </a>
+            <a
+              href="Andrey-Caburnay-Portfolio.pdf"
+              download="Andrey-Caburnay-Portfolio.pdf"
+              className="btn btn-outline"
+            >
+              Download Portfolio <Download size={18} />
             </a>
             <div className="social-links">
               <a href="https://github.com/ryujihub" target="_blank" rel="noreferrer" aria-label="GitHub"><GitHubIcon size={22} /></a>

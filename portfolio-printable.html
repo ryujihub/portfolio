@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Andrey Caburnay — Web Developer · Printable Portfolio</title>
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  PRINTABLE PORTFOLIO — softcopy source for Andrey Caburnay
+  ═══════════════════════════════════════════════════════════════════
+  TO PRINT (hardcopy) OR SAVE AS PDF (softcopy)
+  • Open "Andrey-Caburnay-Portfolio.html" (the self-contained copy next to
+    this file — it has the photos embedded, so it works anywhere, even
+    emailed) → press Ctrl+P → choose "Save as PDF" or your printer.
+  • A ready-made "Andrey-Caburnay-Portfolio.pdf" is also next to this file.
+
+  TO REBUILD BOTH AFTER EDITING THIS FILE:
+     npm run build:pdf   (also runs automatically before `npm run build`)
+
+  NOTE: this source file loads images from ./src/assets/, so keep it inside
+  the "portfolio" folder. Edit the text below anytime to update the document.
+-->
+<style>
+  :root {
+    --ink: #0f172a;
+    --body: #334155;
+    --muted: #64748b;
+    --accent: #4338ca;
+    --accent-deep: #312e81;
+    --accent-soft: #eef2ff;
+    --line: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+
+  /* A4 page setup — margins apply to every printed page */
+  @page { size: A4; margin: 13mm 14mm; }
+
+  /* Screen preview: show it like a paper sheet */
+  @media screen {
+    body { background: #dde3ec; padding: 28px 10px; }
+    .sheet {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 13mm 14mm;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.18);
+      border-radius: 4px;
+    }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { max-width: none; padding: 0; box-shadow: none; border-radius: 0; }
+    .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+    .page-break { break-before: page; page-break-before: always; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+  /* ── Masthead ─────────────────────────────────────────────── */
+  .masthead { display: flex; gap: 8mm; align-items: flex-start; }
+  .masthead-text { flex: 1 1 auto; min-width: 0; }
+  .chip {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #047857;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 999px;
+    padding: 1mm 3.5mm;
+    margin-bottom: 3mm;
+  }
+  h1 {
+    font-size: 24pt;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .role {
+    margin-top: 1.5mm;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .tagline { margin-top: 2.5mm; font-size: 10pt; color: var(--body); max-width: 125mm; }
+  .contact { list-style: none; margin-top: 4mm; display: flex; flex-direction: column; gap: 1.2mm; }
+  .contact li { font-size: 9.5pt; color: var(--ink); font-weight: 500; }
+  .contact span {
+    display: inline-block;
+    width: 20mm;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .portrait {
+    flex: 0 0 auto;
+    width: 30mm;
+    height: 36mm;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 3mm;
+    border: 1px solid var(--line);
+  }
+  .accent-bar {
+    height: 2.2mm;
+    margin: 5mm 0 6.5mm;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #1d4ed8 0%, #7c3aed 55%, #0891b2 100%);
+  }
+
+  /* ── Sections ─────────────────────────────────────────────── */
+  .sec { margin-bottom: 7mm; }
+  h2 {
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    border-bottom: 1.5px solid var(--accent-soft);
+    padding-bottom: 1.6mm;
+    margin-bottom: 3.5mm;
+  }
+  .sec > p { text-align: justify; }
+
+  .stats { display: flex; gap: 4mm; margin-top: 4mm; }
+  .stat {
+    flex: 1 1 0;
+    background: var(--accent-soft);
+    border: 1px solid #e0e7ff;
+    border-radius: 2.5mm;
+    padding: 3mm 4mm;
+    text-align: center;
+  }
+  .stat b { display: block; font-size: 15pt; color: var(--accent); line-height: 1.2; }
+  .stat i { font-style: normal; font-size: 8.5pt; color: var(--muted); letter-spacing: 0.03em; }
+
+  /* ── Projects ─────────────────────────────────────────────── */
+  .project {
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    padding: 4.5mm 5mm 4mm;
+    margin-bottom: 5mm;
+  }
+  .project-head { display: flex; align-items: center; flex-wrap: wrap; gap: 3mm; margin-bottom: 2mm; }
+  .project h3 { font-size: 12.5pt; color: var(--ink); margin-right: auto; }
+  .badge-featured {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 999px;
+    padding: 0.8mm 2.8mm;
+  }
+  .tags { list-style: none; display: flex; gap: 2mm; }
+  .tags li {
+    font-size: 8pt;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.8mm 2.8mm;
+  }
+  .project p.desc { font-size: 9.8pt; }
+  .shot {
+    display: block;
+    margin: 3.5mm auto 1mm;
+    border: 1px solid var(--line);
+    border-radius: 2mm;
+  }
+  .shot-wide { width: 100%; height: 58mm; object-fit: cover; object-position: top; }
+  .shot-phone { max-height: 64mm; width: auto; }
+  .links { margin-top: 2.5mm; font-size: 9pt; color: var(--ink); font-weight: 500; display: flex; flex-wrap: wrap; gap: 5mm; }
+  .links span {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 1.5mm;
+  }
+
+  /* ── Skills ───────────────────────────────────────────────── */
+  .skill-group { margin-bottom: 3.5mm; }
+  .skill-group h3 {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 2mm;
+  }
+  .pills { list-style: none; display: flex; flex-wrap: wrap; gap: 2mm; }
+  .pills li {
+    font-size: 9pt;
+    font-weight: 500;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    border: 1px solid #e0e7ff;
+    border-radius: 999px;
+    padding: 1mm 3.5mm;
+  }
+
+  /* ── Two-column bottom block ──────────────────────────────── */
+  .two-col { display: flex; gap: 7mm; }
+  .two-col > div { flex: 1 1 0; min-width: 0; }
+  .two-col h2 { border-bottom-color: var(--line); }
+  .fact { margin-bottom: 3mm; }
+  .fact b { display: block; font-size: 10pt; color: var(--ink); }
+  .fact span { font-size: 9.3pt; color: var(--body); }
+  .fact .kicker {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.6mm 2.6mm;
+    margin-left: 2mm;
+    vertical-align: 1px;
+  }
+
+  /* ── Footer ───────────────────────────────────────────────── */
+  .doc-footer {
+    border-top: 1.5px solid var(--line);
+    margin-top: 2mm;
+    padding-top: 3mm;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2mm;
+    font-size: 8.5pt;
+    color: var(--muted);
+  }
+  .doc-footer b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead avoid-break">
+    <div class="masthead-text">
+      <span class="chip">● Available for Work</span>
+      <h1>Andrey Caburnay</h1>
+      <p class="role">Web Developer — React · React Native · Node.js</p>
+      <p class="tagline">
+        I build real products that real people rely on — from a government hub serving
+        Montalban residents to mobile apps people use every day.
+      </p>
+      <ul class="contact">
+        <li><span>Email</span> caburnayandrey09@gmail.com</li>
+        <li><span>GitHub</span> github.com/ryujihub</li>
+        <li><span>LinkedIn</span> linkedin.com/in/caburnay-andrey-d-68465b275</li>
+      </ul>
+    </div>
+    <img class="portrait" src="src/assets/portrait.jpg" alt="Portrait of Andrey Caburnay" />
+  </header>
+
+  <div class="accent-bar"></div>
+
+  <section class="sec avoid-break">
+    <h2>Profile</h2>
+    <p>
+      An IT graduate and web developer from the Philippines who ships real things — the official
+      Gender and Development platform for Montalban, Rizal, and a DTR tracking app used by working
+      students. I sweat the UX details, write code that lasts, and measure success by whether
+      people actually use what I build.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>5+</b><i>Projects Built</i></div>
+      <div class="stat"><b>10+</b><i>Technologies</i></div>
+      <div class="stat"><b>2026</b><i>Grad Year</i></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Featured Projects</h2>
+
+    <article class="project avoid-break">
+      <div class="project-head">
+        <h3>GAD Corner Website</h3>
+        <span class="badge-featured">★ Featured</span>
+        <ul class="tags"><li>React</li><li>GovTech</li><li>Web</li></ul>
+      </div>
+      <p class="desc">
+        The official digital hub for Gender and Development (GAD) initiatives of Montalban, Rizal —
+        a centralized portal for GAD news, programs, and services. Features news and article
+        publishing, a media gallery of community programs, and quick-access resources like the
+        GAD Plan &amp; Budget, GAD Projects, and Knowledge &amp; IEC materials.
+      </p>
+      <img class="shot shot-wide" src="src/assets/shots/gad-hero.png" alt="GAD Corner Website preview" />
+      <p class="links">
+        <span>Live</span> gad-3.onrender.com
+        <span>Code</span> github.com/ryujihub
+      </p>
+    </article>
+
+    <article class="project avoid-break">
+      <div class="project-head">
+        <h3>DTR Tracker App</h3>
+        <ul class="tags"><li>React Native</li><li>Expo</li><li>Mobile</li></ul>
+      </div>
+      <p class="desc">
+        A Daily Time Record app for tracking work shifts — morning, afternoon, and overtime
+        clock-ins with a live dashboard, daily progress, goal tracking, and a full history view
+        with monthly totals. Built with React Native &amp; Expo.
+      </p>
+      <img class="shot shot-phone" src="src/assets/shots/dtr-2.jpg" alt="DTR Tracker App screen" />
+      <p class="links">
+        <span>Code</span> github.com/ryujihub/DTR-Tacker
+      </p>
+    </article>
+  </section>
+
+  <section class="sec avoid-break">
+    <h2>Skills</h2>
+    <div class="skill-group">
+      <h3>Frontend &amp; Mobile</h3>
+      <ul class="pills">
+        <li>React</li><li>Next.js</li><li>TypeScript</li><li>React Native</li><li>Expo</li>
+        <li>Tailwind CSS</li><li>Framer Motion</li><li>Firebase</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Backend &amp; Tools</h3>
+      <ul class="pills">
+        <li>Node.js</li><li>Express</li><li>MongoDB</li><li>PostgreSQL</li><li>REST APIs</li>
+        <li>Figma</li><li>Git</li><li>Accessibility</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec two-col avoid-break">
+    <div>
+      <h2>Education</h2>
+      <div class="fact">
+        <b>Bachelor's Degree in Information Technology <span class="kicker">Class of 2026</span></b>
+        <span>Graduated with a degree focused on modern web and mobile development.</span>
+      </div>
+    </div>
+    <div>
+      <h2>Beyond the Code</h2>
+      <div class="fact">
+        <b>Curious Explorer</b>
+        <span>Constantly exploring and researching new topics to expand my perspective and knowledge.</span>
+      </div>
+      <div class="fact">
+        <b>Gamer</b>
+        <span>When I'm not coding, you can find me casually dropping into PUBG Mobile matches.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    <span><b>Andrey Caburnay</b> — Web Developer</span>
+    <span>caburnayandrey09@gmail.com · github.com/ryujihub</span>
+    <span>© 2026 · Printed from my online portfolio</span>
+  </footer>
+
+</div>
+</body>
+</html>
